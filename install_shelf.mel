@@ -1,0 +1,12 @@
+/* WindowSwitcher install script */
+
+global proc installShelfTm8rWindowSwitcher(){
+    string $whatIs = `whatIs installShelfTm8rWindowSwitcher`;
+    string $tmpPath = `match ": (.*)" $whatIs`;
+    string $melPath = `substitute ": " $tmpPath ""`;
+    string $pythonPath = `substitute "install_shelf.mel" $melPath "install_shelf.py"`;
+    print($pythonPath);
+    python("import imp;imp.load_source('_installShelfTm8rWindowSwitcher', '"+$pythonPath+"')");
+}
+
+installShelfTm8rWindowSwitcher();

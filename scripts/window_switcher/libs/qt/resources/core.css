@@ -1,0 +1,24 @@
+QLabel#h1 {
+    background-color: #666;
+    font-weight: bold;
+    color: #fff;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+QToolButton#h1 {
+    background-color: #666;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+}
+
+QFrame#inner {
+    background-color: #494949;
+}
+
+QFrame#header {
+    background-color: #333;
+}
+
