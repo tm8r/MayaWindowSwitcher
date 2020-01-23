@@ -1,0 +1,12 @@
+/* WindowSwitcher install script */
+
+global proc installHotkeyTm8rWindowSwitcher(){
+    string $whatIs = `whatIs installHotkeyTm8rWindowSwitcher`;
+    string $tmpPath = `match ": (.*)" $whatIs`;
+    string $melPath = `substitute ": " $tmpPath ""`;
+    string $pythonPath = `substitute "install_hotkey.mel" $melPath "install_hotkey.py"`;
+    print($pythonPath);
+    python("import imp;imp.load_source('_installHotkeyTm8rWindowSwitcher', '"+$pythonPath+"')");
+}
+
+installHotkeyTm8rWindowSwitcher();

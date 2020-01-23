@@ -1,0 +1,32 @@
+QPushButton {
+    border: 2px solid #000000;
+    background: #444444;
+    color: #ffffff;
+}
+
+QPushButton:checked {
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
+
+QToolButton {
+    background: none;
+    border: 2px solid rgba(0, 0, 0, 0);
+    padding: 0;
+}
+
+QToolButton:hover, QToolButton:checked {
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 0;
+}
+
+QToolButton:pressed {
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 6px;
+}
+
+QLabel {
+    font-weight: bold;
+}
