@@ -170,7 +170,9 @@ class WindowSwitcher(QtWidgets.QDialog):
         WindowSwitcher._ACTIVE = False
         if not self._windows:
             return
-        self._windows[self._current_index].showNormal()
-        self._windows[self._current_index].activateWindow()
+        window = self._windows[self._current_index]
+        if window.isMinimized():
+            window.setWindowState(window.windowState() & ~QtCore.Qt.WindowMinimized)
+        window.activateWindow()
 
     # endregion event override
