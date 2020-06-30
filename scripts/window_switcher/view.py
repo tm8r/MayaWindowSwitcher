@@ -107,6 +107,9 @@ class WindowSwitcher(QtWidgets.QDialog):
             icon_layout = QtWidgets.QVBoxLayout()
             layout.addLayout(icon_layout)
             button = QtWidgets.QToolButton()
+            button.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+            button.customContextMenuRequested.connect(
+                lambda x, y=button, z=w: self._on_window_button_context_menu_requested(x, y, z))
             button.setIconSize(QtCore.QSize(_WINDOW_ELEMENT_WIDTH, _WINDOW_BUTTON_HEIGHT))
             icon = QtGui.QIcon()
 
@@ -130,6 +133,17 @@ class WindowSwitcher(QtWidgets.QDialog):
             self._buttons.append(button)
 
         self._buttons[0].setChecked(True)
+
+    def _on_window_button_context_menu_requested(self, point, button, window):
+        menu = QtWidgets.QMenu(button)
+        move_action = QtWidgets.QAction("Reset Position", button)
+        main_window_center = MAYA_WINDOW.rect().center()
+        left = main_window_center.x() - window.width() / 2
+        top = main_window_center.y() - window.height() / 2
+
+        move_action.triggered.connect(lambda x=window, y=left, z=top: x.move(y, z))
+        menu.addAction(move_action)
+        menu.exec_(button.mapToGlobal(point))
 
     def _switch_selection(self):
         self._current_index += 1
