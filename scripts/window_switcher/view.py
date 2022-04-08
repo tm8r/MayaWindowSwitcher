@@ -15,7 +15,7 @@ from window_switcher import window_helper
 from maya import OpenMayaUI as omui
 
 try:
-    MAYA_WINDOW = QtCompat.wrapInstance(long(omui.MQtUtil.mainWindow()), QtWidgets.QWidget)
+    MAYA_WINDOW = QtCompat.wrapInstance(int(omui.MQtUtil.mainWindow()), QtWidgets.QWidget)
 except:
     MAYA_WINDOW = None
 
