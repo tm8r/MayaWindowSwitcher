@@ -121,9 +121,16 @@ class WindowSwitcher(QtWidgets.QDialog):
             if settings.is_simple_mode():
                 icon.addPixmap(_NO_IMAGE_PIXMAP)
             else:
-                win_pix = QtGui.QPixmap.grabWindow(w.winId())
-                icon.addPixmap(win_pix, QtGui.QIcon.Normal,
-                               QtGui.QIcon.Off)
+                screen = QtWidgets.QApplication.primaryScreen()
+                if not screen:
+                    return
+                win_id = int(w.winId())
+                window_pixmap = screen.grabWindow(win_id)
+                icon.addPixmap(
+                    window_pixmap,
+                    QtGui.QIcon.Mode.Normal,
+                    QtGui.QIcon.State.Off
+                )
 
             button.setIcon(icon)
             button.setCheckable(True)
